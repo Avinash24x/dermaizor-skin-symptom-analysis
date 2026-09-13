@@ -69,3 +69,11 @@ General Awareness Information
 - Joblib
 - CSV dataset
 - JSON awareness information
+
+## 🚀 Live Demo
+
+👉 **[Open Dermaizor](https://dermaizor-skin-symptom-analysis.onrender.com)**
+
+## 📂 Source Code
+
+👉 **[GitHub Repository](https://github.com/Avinash24x/dermaizor-skin-symptom-analysis)**
