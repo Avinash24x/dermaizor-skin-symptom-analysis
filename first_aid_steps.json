@@ -1,0 +1,62 @@
+{
+  "Acne": [
+    "Keep the skin gently clean and avoid squeezing pimples.",
+    "Avoid harsh scrubbing and products that irritate the skin.",
+    "Seek professional advice if acne is severe, painful, or persistent."
+  ],
+  "Eczema": [
+    "Keep the skin moisturized with a fragrance-free moisturizer.",
+    "Avoid scratching and known irritants.",
+    "Seek medical advice for severe, infected, or persistent symptoms."
+  ],
+  "Psoriasis": [
+    "Keep affected skin moisturized and avoid scratching.",
+    "Try to identify and avoid personal flare triggers.",
+    "Seek professional medical advice for diagnosis and treatment."
+  ],
+  "Contact Dermatitis": [
+    "Stop using the suspected irritating product if safe to do so.",
+    "Gently wash the affected area and avoid further exposure.",
+    "Seek medical advice if the reaction is severe or does not improve."
+  ],
+  "Ringworm": [
+    "Keep the affected area clean and dry.",
+    "Avoid sharing towels, clothing, or personal items.",
+    "A clinician or pharmacist can advise on appropriate antifungal treatment."
+  ],
+  "Urticaria": [
+    "Avoid a known trigger if one is identified.",
+    "A cool compress may help reduce discomfort.",
+    "Seek urgent medical care for swelling of the lips/tongue or breathing difficulty."
+  ],
+  "Scabies": [
+    "Avoid close skin-to-skin contact until evaluated and treated.",
+    "Wash bedding and clothing according to appropriate medical guidance.",
+    "Seek medical advice because specific treatment is usually required."
+  ],
+  "Impetigo": [
+    "Keep sores clean and avoid picking or scratching them.",
+    "Do not share towels, clothing, or personal items.",
+    "Seek medical advice because bacterial skin infections may need treatment."
+  ],
+  "Vitiligo": [
+    "Protect depigmented areas from excessive sun exposure.",
+    "Use sun protection on areas with reduced pigment.",
+    "See a dermatologist for confirmation and treatment options."
+  ],
+  "Rosacea": [
+    "Identify and avoid personal triggers such as heat or spicy foods.",
+    "Use gentle, fragrance-free skin products.",
+    "Seek professional advice for persistent facial redness or eye symptoms."
+  ],
+  "Folliculitis": [
+    "Keep the area clean and avoid friction or close shaving while irritated.",
+    "Avoid picking or squeezing the bumps.",
+    "Seek medical advice if there is spreading redness, significant pain, fever, or persistence."
+  ],
+  "Seborrheic Dermatitis": [
+    "Use gentle skin and hair-care products and avoid scratching.",
+    "Keep affected areas clean and follow pharmacist or clinician advice for suitable products.",
+    "Seek professional advice if symptoms are persistent or severe."
+  ]
+}

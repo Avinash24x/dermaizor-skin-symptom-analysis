@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="An educational skin symptom awareness tool using natural language processing and machine learning."
+    >
+
+    <title>Dermaizor | Skin Symptom Awareness</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================
+         Navigation
+    =========================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="#" class="brand">
+
+                <span class="brand-icon">✦</span>
+
+                <img src="{{ url_for('static', filename='dermaizor_logo_icon.png') }}"
+                     alt="Dermaizor"
+                     class="brand-logo">
+                <span>
+                    Derma<span>izor</span>
+                </span>
+
+            </a>
+
+            <span class="offline-badge">
+                ● Offline Ready
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==========================================
+         Main Content
+    =========================================== -->
+
+    <main>
+
+
+        <!-- ======================================
+             Hero Section
+        ======================================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    NLP • MACHINE LEARNING • HEALTH AWARENESS
+                </div>
+
+                <h1>
+                    Understand your
+                    <span>skin symptoms</span>
+                    better.
+                </h1>
+
+                <p class="hero-description">
+
+                    Describe your skin-related symptoms in your own words.
+                    Our lightweight machine learning system analyzes the
+                    description and provides an educational condition category
+                    with general awareness information.
+
+                </p>
+
+                <div class="hero-points">
+
+                    <div class="hero-point">
+                        <span>✓</span>
+                        Natural language input
+                    </div>
+
+                    <div class="hero-point">
+                        <span>✓</span>
+                        Lightweight ML model
+                    </div>
+
+                    <div class="hero-point">
+                        <span>✓</span>
+                        Local / offline processing
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             Predictor Section
+        ======================================= -->
+
+        <section class="predictor-section">
+
+            <div class="predictor-card">
+
+
+                <!-- Card Header -->
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            SYMPTOM ANALYSIS
+                        </span>
+
+                        <h2>
+                            Describe what you're experiencing
+                        </h2>
+
+                        <p>
+                            Include symptoms such as itching, redness,
+                            swelling, dryness, bumps, scaling, or location.
+                        </p>
+
+                    </div>
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                </div>
+
+
+                <!-- Form -->
+
+                <form id="symptomForm">
+
+                    <div class="input-header">
+
+                        <label for="symptoms">
+                            Your symptoms
+                        </label>
+
+                        <span id="characterCount">
+                            0 / 500
+                        </span>
+
+                    </div>
+
+
+                    <textarea
+                        id="symptoms"
+                        name="symptoms"
+                        maxlength="500"
+                        placeholder="Example: I have an itchy red rash on my elbow with dry and irritated skin..."
+                        aria-label="Describe your skin symptoms"
+                    ></textarea>
+
+
+                    <!-- Examples -->
+
+                    <div class="examples">
+
+                        <span class="examples-title">
+                            Try an example:
+                        </span>
+
+                        <button
+                            type="button"
+                            class="example-button"
+                            data-example="itchy red rash on my elbow"
+                        >
+                            Itchy red rash
+                        </button>
+
+                        <button
+                            type="button"
+                            class="example-button"
+                            data-example="small red bumps with itching on my arms"
+                        >
+                            Red itchy bumps
+                        </button>
+
+                        <button
+                            type="button"
+                            class="example-button"
+                            data-example="dry scaly patches on my skin"
+                        >
+                            Dry scaly patches
+                        </button>
+
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="clearButton"
+                            class="secondary-button"
+                        >
+                            Clear
+                        </button>
+
+                        <button
+                            type="submit"
+                            id="predictButton"
+                            class="primary-button"
+                        >
+                            <span id="buttonText">
+                                Analyze Symptoms
+                            </span>
+
+                            <span class="button-arrow">
+                                →
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Loading -->
+
+                    <div
+                        id="loadingMessage"
+                        class="loading hidden"
+                    >
+
+                        <span class="spinner"></span>
+
+                        <span>
+                            Analyzing your symptom description...
+                        </span>
+
+                    </div>
+
+                </form>
+
+
+                <!-- ==================================
+                     Result
+                =================================== -->
+
+                <div
+                    id="result"
+                    class="result hidden"
+                >
+
+                    <div class="result-top">
+
+                        <div class="result-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <span class="result-label">
+                                MODEL OUTPUT
+                            </span>
+
+                            <h2>
+                                Possible Condition
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="disease-box">
+
+                        <p id="diseaseName">
+                        </p>
+
+                        <span>
+                            Educational classification based on
+                            the entered symptom description
+                        </span>
+
+                    </div>
+
+
+                    <!-- Care Information -->
+
+                    <div class="care-section">
+
+                        <div class="care-heading">
+
+                            <span class="care-icon">
+                                +
+                            </span>
+
+                            <div>
+
+                                <h3>
+                                    General Care / Awareness Information
+                                </h3>
+
+                                <p>
+                                    General educational information associated
+                                    with the predicted category.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <ul id="firstAidList">
+                        </ul>
+
+                    </div>
+
+
+                    <!-- Professional Care -->
+
+                    <div class="professional-care">
+
+                        <div class="warning-icon">
+                            !
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                When to seek professional care
+                            </strong>
+
+                            <p>
+                                If symptoms are severe, rapidly worsening,
+                                spreading, infected-looking, or causing
+                                significant discomfort, seek advice from a
+                                qualified healthcare professional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Result Disclaimer -->
+
+                    <p class="result-note">
+
+                        This result is an educational model output and
+                        should not be considered a medical diagnosis.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Error -->
+
+                <div
+                    id="errorMessage"
+                    class="error-message hidden"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             How It Works
+        ======================================= -->
+
+        <section class="how-section">
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    HOW IT WORKS
+                </span>
+
+                <h2>
+                    From your words to a model output
+                </h2>
+
+                <p>
+                    A lightweight NLP pipeline processes your symptom
+                    description locally.
+                </p>
+
+            </div>
+
+
+            <div class="steps-grid">
+
+                <div class="info-card">
+
+                    <div class="info-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Describe
+                    </h3>
+
+                    <p>
+                        Enter your skin-related symptoms naturally,
+                        without needing a medical format.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Vectorize
+                    </h3>
+
+                    <p>
+                        TF-IDF converts the text description into
+                        numerical features for the machine learning model.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Classify
+                    </h3>
+
+                    <p>
+                        A multiclass Logistic Regression model identifies
+                        the condition category that best matches the input.
+                    </p>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <div class="info-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Inform
+                    </h3>
+
+                    <p>
+                        The application displays the model output together
+                        with general awareness information.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             Important Information
+        ======================================= -->
+
+        <section class="information-section">
+
+            <div class="information-grid">
+
+
+                <div class="information-card">
+
+                    <div class="information-icon">
+                        ◉
+                    </div>
+
+                    <h3>
+                        Designed for awareness
+                    </h3>
+
+                    <p>
+                        This application is a student/research project
+                        designed to demonstrate natural language processing,
+                        machine learning, and web application integration.
+                    </p>
+
+                </div>
+
+
+                <div class="information-card">
+
+                    <div class="information-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Lightweight architecture
+                    </h3>
+
+                    <p>
+                        The application uses a lightweight text classification
+                        pipeline that can run locally without requiring a
+                        GPU or cloud-based inference.
+                    </p>
+
+                </div>
+
+
+                <div class="information-card">
+
+                    <div class="information-icon">
+                        🔒
+                    </div>
+
+                    <h3>
+                        Local processing
+                    </h3>
+
+                    <p>
+                        In local deployment, the symptom request is processed
+                        by your Flask application on the same machine rather
+                        than requiring an external prediction service.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             Disclaimer
+        ======================================= -->
+
+        <section class="disclaimer-section">
+
+            <div class="disclaimer-content">
+
+                <div class="disclaimer-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <h3>
+                        Important medical disclaimer
+                    </h3>
+
+                    <p>
+                        Dermaizor is an educational and awareness tool.
+                        Its predictions are generated by a machine learning
+                        model trained on a project dataset and are not a
+                        substitute for professional medical examination,
+                        diagnosis, or treatment.
+                    </p>
+
+                    <p>
+                        Do not use this application to make urgent medical
+                        decisions. Consult a qualified healthcare professional
+                        for personal medical advice.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==========================================
+         Footer
+    =========================================== -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <span class="brand-icon">
+                    ✦
+                </span>
+
+                <strong>
+                    Dermaizor
+                </strong>
+
+            </div>
+
+            <p>
+                NLP-Based Skin Symptom Awareness Project
+            </p>
+
+            <span>
+                Educational use only • Built with Flask & Machine Learning
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>
